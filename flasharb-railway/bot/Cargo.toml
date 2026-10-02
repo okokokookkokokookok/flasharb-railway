@@ -1,0 +1,43 @@
+[package]
+name = "flasharb-bot"
+version = "0.1.0"
+edition = "2021"
+authors = ["Loxee"]
+description = "Off-chain cross-DEX arbitrage scanner that funds trades with Aave V3 flash loans"
+license = "MIT"
+readme = "../README.md"
+repository = "https://github.com/loxee/flasharb"
+
+[[bin]]
+name = "flasharb"
+path = "src/main.rs"
+
+[dependencies]
+# Ethereum client + ABI / contract bindings
+ethers = { version = "2.0", features = ["abigen", "ws", "rustls"] }
+
+# Async runtime
+tokio = { version = "1.40", features = ["full"] }
+
+# Config + serde
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# Big integer math beyond U256 helpers
+num-bigint = "0.4"
+num-traits = "0.2"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Env loading
+dotenvy = "0.15"
+
+[dev-dependencies]
+approx = "0.5"
